@@ -1,0 +1,75 @@
+.furnitlogo {
+  font-weight: 900;
+  font-size: 40px;
+}
+
+.image {
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+.cardItem {
+  position: relative;
+  height: 300px;
+}
+.buttons {
+  position: absolute;
+  top: 250px;
+  left: 110px;
+  /* background-color: white; */
+}
+.delete {
+  color: transparent;
+  background-color: transparent;
+  border-color: transparent;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+.line {
+  width: 100%;
+  border: 0.5px solid black;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+.algorismic {
+  background-color: #143043;
+  border-radius: 30px;
+}
+.delete:hover {
+  color: red;
+  border-color: red;
+}
+
+.edit:hover {
+  color: yellow;
+  border-color: yellow;
+}
+
+.edit {
+  color: transparent;
+  background-color: transparent;
+  border-color: transparent;
+  border-radius: 8px;
+}
+.algo {
+  height: 150px;
+  border-radius: 15px;
+}
+.maxsulotlar {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 100px;
+  line-height: 122px;
+  -webkit-text-stroke: 1px black;
+  color: white;
+
+  /* identical to box height */
+
+  text-align: center;
+
+  /* border: 2px solid #282a30; */
+}
+.plusButton {
+  border-radius: 13px;
+}
