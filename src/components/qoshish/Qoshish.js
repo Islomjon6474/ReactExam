@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useRef } from "react";
 
 import "./qoshish.css";
 import { NavLink } from "react-router-dom";
@@ -13,64 +13,76 @@ import {
   Nav,
   NavbarText,
 } from "reactstrap";
+import Header from "../Header/Header";
+import ProductContext from "../../contexts/ProductContexts";
 
-function qoshish(props) {
+function Qoshish(props) {
+  const { products, setProducts } = useContext(ProductContext);
+
+  const img = useRef();
+  const name = useRef();
+  const price = useRef();
+
+  const inputs = [
+    {
+      name: "img",
+      placeholder: "Maxsulot rasmi",
+      ref: img,
+    },
+    {
+      name: "prodname",
+      placeholder: "Maxsulot rasmi",
+      ref: name,
+    },
+    {
+      name: "price",
+      placeholder: "Maxsulot rasmi",
+      ref: price,
+    },
+  ];
+  // {
+  //   url: "https://www.cnet.com/a/img/iJxo9AIxiXHqVoqm6nGISKtKwPI=/2020/08/18/b7168aea-9f7e-47bb-9f31-4cb8ad92fbc7/lg-note-20-ultra-5g-iphone-11-se-google-pixel-4a-lg-velvet-6133.jpg",
+  //   id: 12,
+  //   prodName: "Modern lamp study",
+  //   price: "$135",
+  // },
+  function handleAdd() {
+    const obj = {
+      url: img.current.value,
+      id: products.length + 1,
+      prodName: name.current.value,
+      price: price.current.value,
+    };
+    const t = products;
+    t.push(obj);
+    setProducts(t);
+  }
   return (
     <>
-      <div className="container">
-        <Navbar color="white" expand="md" light>
-          <NavbarBrand className="furnitlogo" href="/">
-            Furniutr.
-          </NavbarBrand>
-          <NavbarToggler onClick={function noRefCheck() {}} />
-          <Collapse navbar>
-            <Nav className="me-auto" navbar></Nav>
-            <FontAwesomeIcon icon={faSearch} className="me-2" />
-          </Collapse>
-        </Navbar>
-      </div>
+      <Header text="Qo'shish" />
 
-      <div>
-        <h3 className="p-5">
-          Barchasini ko’rish / qo’shish / o’zgartirish / o’chirish paneli
-        </h3>
-        <h1 className="maxsulotlar">Qoshish</h1>
-      </div>
       <div className="container">
         <div className="row">
-          <div className=" col-lg-6 col-md-12">
-            <input
-              type="text"
-              name="img"
-              required
-              className="w-100 my-2 rounded p-1 border-muted"
-              placeholder="Maxsulot rasmi"
-            />
-          </div>
-          <div className="col-lg-6 col-md-12">
-            <input
-              type="text"
-              name="prodname"
-              required
-              className="w-100 my-2 rounded p-1"
-              placeholder="Maxsulot nomi"
-            />
-          </div>
-          <div className="col-lg-6 col-md-12 my-2">
-            <input
-              type="text"
-              name="price"
-              required
-              className="w-100 rounded p-1"
-              placeholder="Maxsulot narxi"
-            />
-          </div>
+          {inputs.map((item) => {
+            return (
+              <div className=" col-lg-6 col-md-12">
+                <input
+                  type="text"
+                  name={item.name}
+                  required
+                  className="w-100 my-2 rounded p-1 border-muted"
+                  placeholder={item.placeholder}
+                  ref={item.ref}
+                />
+              </div>
+            );
+          })}
           <div className="col-12 editbtn">
             <NavLink to="/">
               <button>Ortga qaytish</button>
             </NavLink>
             <NavLink to="/">
-              <button>Saqlash</button>
+              <button onClick={() => handleAdd()}>Saqlash</button>
             </NavLink>
           </div>
         </div>
@@ -79,4 +91,4 @@ function qoshish(props) {
   );
 }
 
-export default qoshish;
+export default Qoshish;

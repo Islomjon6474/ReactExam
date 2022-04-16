@@ -5,25 +5,37 @@
 
 .image {
   object-fit: cover;
-  border-radius: 15px;
+  border-radius: 5px;
 }
 
 .cardItem {
-  position: relative;
-  height: 300px;
+  margin-bottom: 130px;
+  opacity: 1;
+}
+
+.cardItem:hover .image {
+  opacity: 0.3;
+  background-color: black;
+}
+
+.cardItem:hover .delete {
+  color: red;
+  border-color: red;
 }
 .buttons {
-  position: absolute;
-  top: 250px;
-  left: 110px;
+  transform: translateY(-200%);
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 20px;
   /* background-color: white; */
 }
 .delete {
   color: transparent;
   background-color: transparent;
   border-color: transparent;
-  border-radius: 8px;
-  margin-bottom: 20px;
+  border-radius: 5px;
+  padding: 10px;
 }
 .line {
   width: 100%;
@@ -35,12 +47,8 @@
   background-color: #143043;
   border-radius: 30px;
 }
-.delete:hover {
-  color: red;
-  border-color: red;
-}
 
-.edit:hover {
+.cardItem:hover .edit {
   color: yellow;
   border-color: yellow;
 }
@@ -49,7 +57,8 @@
   color: transparent;
   background-color: transparent;
   border-color: transparent;
-  border-radius: 8px;
+  border-radius: 5px;
+  padding: 10px;
 }
 .algo {
   height: 150px;

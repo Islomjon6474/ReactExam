@@ -9,67 +9,91 @@ import {
   NavbarText,
 } from "reactstrap";
 
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useContext, useRef } from "react";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
+import Header from "../Header/Header";
+import ProductContext from "../../contexts/ProductContexts";
 
 function Ozgartirish(props) {
+  const params = useParams();
+  const { products, setProducts } = useContext(ProductContext);
+
+  const navigate = useNavigate();
+
+  console.log(params);
+
+  const img = useRef();
+  const name = useRef();
+  const price = useRef();
+
+  const inputs = [
+    {
+      name: "img",
+      placeholder: "Maxsulot rasmi",
+      ref: img,
+    },
+    {
+      name: "prodname",
+      placeholder: "Maxsulot rasmi",
+      ref: name,
+    },
+    {
+      name: "price",
+      placeholder: "Maxsulot rasmi",
+      ref: price,
+    },
+  ];
+
+  function handleEdit() {
+    if (
+      img.current.value != "" &&
+      name.current.value != "" &&
+      price.current.value != ""
+    ) {
+      const obj = {
+        url: img.current.value,
+        id: products.length + 1,
+        prodName: name.current.value,
+        price: price.current.value,
+      };
+      products[params.id] = obj;
+      navigate(`/`);
+    }
+  }
+
   return (
-    <div>
-      <div className="container">
-        <Navbar color="white" expand="md" light>
-          <NavbarBrand className="furnitlogo" href="/">
-            Furniutr.
-          </NavbarBrand>
-          <NavbarToggler onClick={function noRefCheck() {}} />
-          <Collapse navbar>
-            <Nav className="me-auto" navbar></Nav>
-            <FontAwesomeIcon icon={faSearch} className="me-2" />
-          </Collapse>
-        </Navbar>
-      </div>
+    <>
+      <Header text="O'zgartirish" />
       <div>
-        <h3 className="p-5">
-          Barchasini ko’rish / qo’shish / o’zgartirish / o’chirish paneli
-        </h3>
-        <h1 className="maxsulotlar">O'zgartirish</h1>
-      </div>
-      <div className="container">
-        <div className="row">
-          <div className=" col-lg-6 col-md-12">
-            <input
-              type="text"
-              required
-              className="w-100 my-2 rounded p-1 border-muted"
-              placeholder="Maxsulot rasmi"
-            />
-          </div>
-          <div className="col-lg-6 col-md-12">
-            <input
-              type="text"
-              required
-              className="w-100 my-2  rounded p-1"
-              placeholder="Maxsulot nomi"
-            />
-          </div>
-          <div className="col-lg-6 col-md-12 my-2">
-            <input
-              type="text"
-              required
-              className="w-100  rounded p-1"
-              placeholder="Maxsulot narxi"
-            />
-          </div>
-          <div className="col-12 editbtn">
-            <NavLink to="/">
-              <button className="dalateBtn">Ortga qaytish</button>
-            </NavLink>
-            <NavLink to="/">
-              <button className="editbtn">Saqlash</button>
-            </NavLink>
+        <div className="container">
+          <div className="row">
+            {inputs.map((item) => {
+              return (
+                <div className=" col-lg-6 col-md-12">
+                  <input
+                    type="text"
+                    name={item.name}
+                    required
+                    className="w-100 my-2 rounded p-1 border-muted"
+                    placeholder={item.placeholder}
+                    ref={item.ref}
+                  />
+                </div>
+              );
+            })}
+            <div className="col-12 editbtn">
+              <NavLink to="/">
+                <button className="dalateBtn">Ortga qaytish</button>
+              </NavLink>
+
+              <button onClick={() => handleEdit()} className="editbtn">
+                Saqlash
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
