@@ -31,12 +31,12 @@ function Qoshish(props) {
     },
     {
       name: "prodname",
-      placeholder: "Maxsulot rasmi",
+      placeholder: "Maxsulot nomi",
       ref: name,
     },
     {
       name: "price",
-      placeholder: "Maxsulot rasmi",
+      placeholder: "Maxsulot narxi",
       ref: price,
     },
   ];
