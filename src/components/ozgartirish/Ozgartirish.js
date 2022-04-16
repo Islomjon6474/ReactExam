@@ -34,12 +34,12 @@ function Ozgartirish(props) {
     },
     {
       name: "prodname",
-      placeholder: "Maxsulot rasmi",
+      placeholder: "Maxsulot nomi",
       ref: name,
     },
     {
       name: "price",
-      placeholder: "Maxsulot rasmi",
+      placeholder: "Maxsulot narxi",
       ref: price,
     },
   ];
@@ -55,6 +55,7 @@ function Ozgartirish(props) {
       products[params.id].price = price.current.value;
     }
     navigate(`/`);
+    console.log("ishladi");
   }
 
   return (
