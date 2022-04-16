@@ -45,20 +45,16 @@ function Ozgartirish(props) {
   ];
 
   function handleEdit() {
-    if (
-      img.current.value != "" &&
-      name.current.value != "" &&
-      price.current.value != ""
-    ) {
-      const obj = {
-        url: img.current.value,
-        id: products.length + 1,
-        prodName: name.current.value,
-        price: price.current.value,
-      };
-      products[params.id] = obj;
-      navigate(`/`);
+    if (img.current.value != "") {
+      products[params.id].url = img.current.value;
     }
+    if (name.current.value != "") {
+      products[params.id].prodName = name.current.value;
+    }
+    if (price.current.value != "") {
+      products[params.id].price = price.current.value;
+    }
+    navigate(`/`);
   }
 
   return (
